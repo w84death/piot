@@ -1,5 +1,9 @@
 # Mietek the chatbot
 
+- 0.8
+    - simple weather info
+- 0.7.1
+    - winows solid background
 - 0.7
     - layout fixes
     - strict names + time in whiteboard

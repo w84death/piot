@@ -12,16 +12,22 @@ import config
 import os, slackclient, time, re, random
 from asciimatics.scene import Scene
 from asciimatics.screen import Screen
+import pyowm
 
-VERSION = 0.7
+
+VERSION = '0.8'
 SOCKET_DELAY = 1
 BOT_SLACK_NAME = 'mietek'
 BOT_SLACK_TOKEN = os.environ.get('SLACK_MIETEK_TOKEN')
 BOT_SLACK_ID = os.environ.get('BOT_MIETEK_ID')
+API_KEY_WEATHER = os.environ.get('API_KEY_WEATHER')
 BOARD_MSG_LEN_MIN = 3
 BOARD_MSG_LEN_MAX = 0
 WINDOW_TITLE_X = 4
+
+
 sc = slackclient.SlackClient(BOT_SLACK_TOKEN)
+owm = pyowm.OWM(API_KEY_WEATHER)
 fs = filesystem.Filesystem()
 cfg = config.Config()
 def get_mention(user):
@@ -32,7 +38,7 @@ board = fs.load()
 
 CMD_BOARD = ['tablica', 'Zapisalem na tablicy :)', 'Wiadomosc musi byc dluzsza niz {min} znaki i krotsza niz {max} znakow.']
 CMD_REMIND = ['przypomnij', 'Postaram sie przypomniec']
-
+CMD_WEATHER = ['pogoda', 'Jest teraz {temp} stopni Celsjusza. Wieje z predkoscia {speed} km/h.']
 CMDS = [
     [
         ['witam', 'witaj', 'czesc', 'hi', 'yo', 'elo', 'siema'],
@@ -52,10 +58,20 @@ CMDS = [
     ]
 ]
 
-def save_whiteboard(message, user):
+def get_weather():
+    observation = owm.weather_at_place('Poznan,pl')
+    weather = observation.get_weather()
+    temp = weather.get_temperature('celsius')['temp']
+    speed = weather.get_wind()['speed']
+    return temp, speed
+
+def save_whiteboard(message, user=False):
     message = message.replace(CMD_BOARD[0], '').strip()
     t = time.strftime("%H:%M:%S", time.gmtime())
-    message_to_save = '{time} <{user}> {message}'.format(time=t, user=user, message=message)
+    if user:
+        message_to_save = '{time} <{user}> {message}'.format(time=t, user=user, message=message)
+    else:
+        message_to_save = '{time} *** {message} ***'.format(time=t, message=message)
     ml = len(message_to_save)
     if ml > BOARD_MSG_LEN_MIN and ml < BOARD_MSG_LEN_MAX:
         board.append(message_to_save)
@@ -71,7 +87,13 @@ def decode_message(message, user):
         # real commands
         if tokens[0] == CMD_BOARD[0]:
             return save_whiteboard(message, user)
-    
+
+        if tokens[0] == CMD_WEATHER[0]:
+            t,s = get_weather()
+            weather = CMD_WEATHER[1].format(temp=t, speed=s)
+            save_whiteboard(weather)
+            return weather
+
         # smalltalk
         for cmd in CMDS:
             if any(g in tokens for g in cmd[0]):
@@ -116,9 +138,9 @@ def draw_data(scr, data, title, x, y, show_last, color):
     top_y = y
     max_x = scr.width
     for i in range(len(data)-show_last, len(data)):
+        scr.move(x,y)
+        scr.draw(max_x-1, y, ' ', scr.COLOUR_WHITE, color)    
         if i > -1 and i < len(data):
-            scr.move(x,y)
-            scr.draw(max_x-1, y, ' ', scr.COLOUR_WHITE, color)
             scr.print_at(data[i] + ' ',x, y, scr.COLOUR_BLACK, 0, color)
         y += 1
     render_frame(scr, title, 0, top_y, max_x-1, y, color)
@@ -174,5 +196,3 @@ if __name__=='__main__':
         Screen.wrapper(loop)
     else:
         print('[!] Connection to Slack failed.')
-
-
