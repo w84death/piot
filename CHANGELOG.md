@@ -1,5 +1,8 @@
 # Mietek the chatbot
 
+- 0.7
+    - layout fixes
+    - strict names + time in whiteboard
 - 0.6
     - colors
     - whiteboard message min/max length

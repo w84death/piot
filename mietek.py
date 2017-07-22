@@ -13,13 +13,14 @@ import os, slackclient, time, re, random
 from asciimatics.scene import Scene
 from asciimatics.screen import Screen
 
-VERSION = 0.6
+VERSION = 0.7
 SOCKET_DELAY = 1
 BOT_SLACK_NAME = 'mietek'
 BOT_SLACK_TOKEN = os.environ.get('SLACK_MIETEK_TOKEN')
 BOT_SLACK_ID = os.environ.get('BOT_MIETEK_ID')
 BOARD_MSG_LEN_MIN = 3
 BOARD_MSG_LEN_MAX = 0
+WINDOW_TITLE_X = 4
 sc = slackclient.SlackClient(BOT_SLACK_TOKEN)
 fs = filesystem.Filesystem()
 cfg = config.Config()
@@ -31,6 +32,7 @@ board = fs.load()
 
 CMD_BOARD = ['tablica', 'Zapisalem na tablicy :)', 'Wiadomosc musi byc dluzsza niz {min} znaki i krotsza niz {max} znakow.']
 CMD_REMIND = ['przypomnij', 'Postaram sie przypomniec']
+
 CMDS = [
     [
         ['witam', 'witaj', 'czesc', 'hi', 'yo', 'elo', 'siema'],
@@ -50,23 +52,25 @@ CMDS = [
     ]
 ]
 
-def save_whiteboard(message):
+def save_whiteboard(message, user):
     message = message.replace(CMD_BOARD[0], '').strip()
-    ml = len(message)
+    t = time.strftime("%H:%M:%S", time.gmtime())
+    message_to_save = '{time} <{user}> {message}'.format(time=t, user=user, message=message)
+    ml = len(message_to_save)
     if ml > BOARD_MSG_LEN_MIN and ml < BOARD_MSG_LEN_MAX:
-        board.append('[!] ' + message)
+        board.append(message_to_save)
         fs.save(board)
         return CMD_BOARD[1]
     else:
         return CMD_BOARD[2].format(min=BOARD_MSG_LEN_MIN, max=BOARD_MSG_LEN_MAX)
 
-def decode_message(message):
+def decode_message(message, user):
     if message:
         tokens = [re.sub('[^A-Za-z0-9]+', '', word.lower()) for word in message.strip().split()]
         
         # real commands
         if tokens[0] == CMD_BOARD[0]:
-            return save_whiteboard(message)
+            return save_whiteboard(message, user)
     
         # smalltalk
         for cmd in CMDS:
@@ -78,7 +82,7 @@ def format_response(response, user_mention):
     return response.format(mention=user_mention)
 
 def handle_message(message, user, channel):
-    message_decoded = decode_message(message)
+    message_decoded = decode_message(message, user)
     if message_decoded:
         user_mention = get_mention(user)
         post_message(message=format_response(message_decoded, user_mention), channel=channel)
@@ -102,31 +106,30 @@ def post_message(message, channel):
                           text=message, as_user=True)
 
 def format_log(event):
-    log = '[+] ' + str(event.get('type'))
+    log = ' [+] ' + str(event.get('type'))
     if event.get('user'):
         log += ' <' + str(event.get('user')) + '> '
     if event.get('text'):
         log += str(event.get('text'))
     return log
-
-
 def draw_data(scr, data, title, x, y, show_last, color):
     top_y = y
     max_x = scr.width
     for i in range(len(data)-show_last, len(data)):
         if i > -1 and i < len(data):
             scr.move(x,y)
-            scr.draw(max_x-2, y, ' ', scr.COLOUR_WHITE, color)
+            scr.draw(max_x-1, y, ' ', scr.COLOUR_WHITE, color)
             scr.print_at(data[i] + ' ',x, y, scr.COLOUR_BLACK, 0, color)
         y += 1
-    render_frame(scr, title, 0, top_y, max_x-1, y+1, color)
-def render_frame(scr, title, x, y, max_x, max_y, color,):
+    render_frame(scr, title, 0, top_y, max_x-1, y, color)
+    return True
+def render_frame(scr, title, x, y, max_x, max_y, color):
     scr.move(x,y)
-    scr.draw(max_x, y, None, color, thin=True)
-    scr.draw(max_x, max_y, None, color, thin=True)
-    scr.draw(x, max_y, None, color, thin=True)
-    scr.draw(x, y, None, color, thin=True)
-    scr.print_at(title, int(max_x/2)-int(len(title)/2), y, color, scr.A_BOLD)
+    scr.draw(max_x, y, None, color)
+    scr.draw(max_x, max_y, None, color)
+    scr.draw(x, max_y, None, color)
+    scr.draw(x, y, None, color)
+    scr.print_at(title, WINDOW_TITLE_X, y, color, scr.A_BOLD)
 
 def draw_footer(scr):
     scr.print_at('[?] Napisz cos! wyslij wiadomosc *tablica tresc* do @mietek na firmowym Slacku!.', 1, scr.height-3, scr.COLOUR_YELLOW)
@@ -135,8 +138,8 @@ def draw_footer(scr):
 def draw_header(scr):
     scr.move(0, 0)
     scr.draw(scr.width, 0, None, scr.COLOUR_GREEN)
-    title = ' ~ MIETEK the chatbot - v' + str(VERSION) + ' ~ '
-    scr.print_at(title, int(scr.width/2)-int(len(title)/2), 0, scr.COLOUR_GREEN, scr.A_BOLD)    
+    title = ' MIETEK the chatbot [v' + str(VERSION) + ']'
+    scr.print_at(title, WINDOW_TITLE_X, 0, scr.COLOUR_GREEN, scr.A_BOLD)    
 
 def loop(scr):
     global logger
@@ -144,7 +147,7 @@ def loop(scr):
     global BOARD_MSG_LEN_MAX
     draw_header(scr)
     draw_footer(scr)
-    logger.append('[.] Mietek is alive!')
+    logger.append(' [!] Mietek is running.')
     BOARD_MSG_LEN_MAX = scr.width - 4
 
     while True:
@@ -159,8 +162,8 @@ def loop(scr):
         if ev in (ord('Q'), ord('q')):
             raise StopApplication("User requested exit")
         
-        draw_data(scr, logger, ' ~ LOG WINDOW ~ ', 2, 2, 6, scr.COLOUR_RED)
-        draw_data(scr, board, ' ~ WHITEBOARD ~ ', 2, 10, scr.height - 18, scr.COLOUR_WHITE)
+        draw_data(scr, logger, ' LOG WINDOW ', 1, 2, 6, scr.COLOUR_RED)
+        draw_data(scr, board, ' WHITEBOARD ', 1, 10, scr.height - 15, scr.COLOUR_WHITE)
         scr.refresh()            
         time.sleep(SOCKET_DELAY)
 
