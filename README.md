@@ -19,5 +19,5 @@ Software:
     - slackclient
     - cPickle
 
-![Mietek v9](http://i.imgur.com/lrbA0BU.png)
+![Mietek v9](http://i.imgur.com/0lY42R3.png)
 
