@@ -1,7 +1,13 @@
-# Mietek the chatbot
+# PiBot
 
+- 0.9
+    - massive refactoring for better modularity and configuration
+    - app gets official name: PiBot
+    - more detailed weater forecast
+    - time sheduler for Public Service Announcments
 - 0.8
     - simple weather info
+    - PSA
 - 0.7.1
     - winows solid background
 - 0.7

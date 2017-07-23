@@ -1,14 +1,23 @@
 # piot
 Raspberry Pi IoT Software - Slack Chatbot
 
-## Mietek
+## PiBot
 
-First real chatbot that is created mainly for testing purposes.
+PiBot is an Intranet Chatbot System. It is a software for Raspberry Pi written in Python. Main purpose is to provide services for office space intranet. 
 
-![Mietek v5](http://i.imgur.com/lrbA0BU.png)
+Hardware:
 
-### Features
+- Raspberry Pi Zero W
+- Monitor
 
-- responding to custom key words
-- global whiteboard
-- terminal GUI with log and whiteboard
+Software:
+
+- Raspbian 8
+- Python 2
+    - asciimatics
+    - pyowm
+    - slackclient
+    - cPickle
+
+![Mietek v9](http://i.imgur.com/lrbA0BU.png)
+
