@@ -16,7 +16,7 @@ class Logger:
         if event.get('user'):
             log_msg += ' <' + str(event.get('user')) + '> '
         if event.get('text'):
-            log_msg += str(event.get('text'))
+            log_msg += event.get('text').encode('ascii', 'replace')
         return log_msg
 
     def save_event(self, message):
@@ -24,6 +24,8 @@ class Logger:
         return True
 
     def save(self, message):
-        log_msg = '{time} {message}'.format(time=self.get_timestamp(), message=message)
+        log_msg = '{time} {message}'.format(
+            time=self.get_timestamp(), 
+            message=unicode( message, "utf8" ) )
         self.log.append(log_msg)
         return True

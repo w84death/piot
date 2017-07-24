@@ -136,7 +136,7 @@ def loop(scr):
                 log.save_event(event)
                 if is_for_me(event):
                     handle_message(
-                        message = event.get('text'), 
+                        message = event.get('text').encode('ascii', 'replace'),
                         user = event.get('user'), 
                         channel = event.get('channel'))
 
