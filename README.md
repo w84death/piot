@@ -20,6 +20,7 @@ Modules available (v0.9):
 - sheduler for PSA
 - filesystem (save/load data)
 - simple commands
+- audio text reader
 
 Hardware:
 
@@ -34,6 +35,7 @@ Software:
     - pyowm
     - slackclient
     - cPickle
+    - eSpeak
 
 
 

@@ -1,5 +1,7 @@
 # PiBot
 
+- 0.10
+    - on-screen reader; reads (audio) board messages
 - 0.9
     - massive refactoring for better modularity and configuration
     - app gets official name: PiBot

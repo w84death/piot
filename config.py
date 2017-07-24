@@ -5,7 +5,7 @@ class Config:
         self.settings = {
             'app_name': 'PiBot - Intranet Chatbot System',
             'codename': 'Mietek the chatbot',
-            'version': '0.9',
+            'version': '0.10',
             'delay': 0.9,
             'window_title_pos': 4,
             'window_title_log': 'LOG WINDOW',
@@ -17,7 +17,7 @@ class Config:
 
         self.api_keys = {
             'forecast': os.environ.get('API_KEY_WEATHER'),
-            'slack': os.environ.get('SLACK_MIETEK_TOKEN'),
+            'slack': os.environ.get('API_KEY_SLACK_MIETEK'),
             'bot': os.environ.get('BOT_MIETEK_ID'),
         }
 

@@ -2,6 +2,7 @@ from time import localtime, strftime
 import config
 import commands
 import filesystem
+import reader
 
 class Whiteboard:
     def __init__(self):
@@ -9,6 +10,7 @@ class Whiteboard:
         self.cfg = config.Config()
         self.cmds = commands.Commands()
         self.board = self.fs.load()
+        self.reader = reader.Reader()
 
     def get_board(self):
         return self.board
@@ -19,8 +21,8 @@ class Whiteboard:
 
         template = '{time} {message}'
         if psa:
-            template_frame = '      ***'
-            template = '      *** {message}'
+            template_frame = '[!] ***'
+            template = '[!] *** {message}'
 
         t = strftime("%H:%M", localtime())
         message = message.replace(self.cmds.get_cmd('board')['cmd'], '').strip()
@@ -36,6 +38,7 @@ class Whiteboard:
             if psa:
                 self.board.append(template_frame)
             self.fs.save(self.board)
+            self.reader.read(message)
             return self.cmds.get_cmd('board')['success']
         else:
             return self.cmds.get_cmd('board')['failure'].format(
