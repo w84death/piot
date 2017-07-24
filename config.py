@@ -18,7 +18,7 @@ class Config:
         self.api_keys = {
             'forecast': os.environ.get('API_KEY_WEATHER'),
             'slack': os.environ.get('API_KEY_SLACK_MIETEK'),
-            'bot': os.environ.get('BOT_MIETEK_ID'),
+            'bot': os.environ.get('BOT_ID_MIETEK'),
         }
 
     def get_settings(self, item):
