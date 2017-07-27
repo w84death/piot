@@ -16,13 +16,12 @@ class Forecast:
         observation = self.owm.weather_at_place('Poznan,pl')
         weather = observation.get_weather()
         temp = weather.get_temperature('celsius')['temp']
-        temp_max = weather.get_temperature('celsius')['temp']
         speed = weather.get_wind()['speed']
         clouds = weather.get_clouds()
-        return temp, temp_max, speed, clouds
+        return temp, speed, clouds
 
     def get_report(self):
-        temp, temp_max, speed, clouds = self.get_weather()
+        temp, speed, clouds = self.get_weather()
         message = self.cmds.get_cmd('forecast')['success']
-        report = message.format(temp=temp, temp_max=temp_max, speed=speed, clouds=clouds )
+        report = message.format(temp=temp, speed=speed, clouds=clouds )
         return report 

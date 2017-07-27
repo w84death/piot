@@ -30,7 +30,7 @@ class Whiteboard:
             time=t, 
             message=message)
     
-        ml = len(message_to_save)
+        ml = len(message)
         if ml > self.cfg.get_settings('board_msg_len_min') and ml < self.cfg.get_settings('board_msg_len_max'):
             if psa:
                 self.board.append(template_frame)
@@ -38,7 +38,8 @@ class Whiteboard:
             if psa:
                 self.board.append(template_frame)
             self.fs.save(self.board)
-            self.reader.read(message)
+            if self.cfg.get_settings('reader_enabled'):
+                self.reader.read(message)
             return self.cmds.get_cmd('board')['success']
         else:
             return self.cmds.get_cmd('board')['failure'].format(

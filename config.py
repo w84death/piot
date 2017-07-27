@@ -5,7 +5,7 @@ class Config:
         self.settings = {
             'app_name': 'PiBot - Intranet Chatbot System',
             'codename': 'Mietek the chatbot',
-            'version': '0.10',
+            'version': '0.11',
             'delay': 0.9,
             'window_title_pos': 4,
             'window_title_log': 'LOG WINDOW',
@@ -13,6 +13,7 @@ class Config:
             'board_db': 'board_db.p',
             'board_msg_len_min': 3,
             'board_msg_len_max': 140,
+            'reader_enabled': False
         }
 
         self.api_keys = {

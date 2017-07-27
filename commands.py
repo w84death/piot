@@ -5,11 +5,11 @@ class Commands:
             'board': {
                 'cmd': 'tablica',
                 'success': 'Zapisalem na tablicy :)',
-                'failure': 'Wiadomosc musi byc dluzsza niz {min} znaki i krotsza niz {max} znakow.'
+                'failure': 'Wiadomosc musi byc *dluzsza niz {min}* znaki i *krotsza niz {max}* znakow.'
             },
             'forecast': {
                 'cmd': 'pogoda',
-                'success': 'Jest teraz {temp} stopni Celsjusza (max: {temp_max}). Zachmurzenie {clouds}%. Wieje z predkoscia {speed} km/h.',
+                'success': 'Jest teraz *{temp} stopni Celsjusza*. Zachmurzenie *{clouds}%*. Wieje z predkoscia *{speed} km/h*.',
                 'failure': 'Nie poge pobrac prognozy pogody :('
             }
         }
@@ -35,7 +35,11 @@ class Commands:
             ],
             [
                 ['pearson', 'ioki', 'korpo'],
-                ['Szlachta nie pracuje!', 'Korposzczury...']
+                ['Szlachta nie pracuje!', 'Korposzczury...', 'Do roboty a nie tylko te jutuby!']
+            ],
+            [
+                ['pomoc', 'komendy', 'help'],
+                ['Dostepne sa dwie komendy: *tablica _tresc_* oraz *pogoda*']
             ]
         ]
 
