@@ -5,7 +5,7 @@ class Config:
         self.settings = {
             'app_name': 'PiBot - Intranet Chatbot System',
             'codename': 'Mietek the chatbot',
-            'version': '0.12',
+            'version': '0.13',
             'delay': 0.9,
             'screen_width': 80,
             'window_title_pos': 4,

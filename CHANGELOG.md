@@ -2,8 +2,8 @@
 
 ## In Development
 - 0.13
-    - ???
-    
+    - color theme
+
 ## Released
 - 0.12
     - light/fast display module for Raspberry Pi Zero
