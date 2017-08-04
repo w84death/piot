@@ -88,6 +88,7 @@ def loop():
     log.save(cmds.get_psa('welcome'))
     disp.draw_header()
     disp.draw_footer()
+    disp.refresh()
     
     while True:
         event_list = sc.rtm_read()
@@ -100,7 +101,7 @@ def loop():
                         message = event.get('text').encode('ascii', 'replace'),
                         user = event.get('user'), 
                         channel = event.get('channel'))
-                    redraw_screen = True
+                redraw_screen = True
 
         disp.key_check()        
         wb.write(psa.check_scheduler(), True)
