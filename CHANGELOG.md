@@ -3,6 +3,7 @@
 ## In Development
 - 0.12
     - light/fast mode for Raspberry Pi Zero
+    - UI refresh seperated from slack client refresh
 
 ## Released
 

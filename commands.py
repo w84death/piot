@@ -39,7 +39,7 @@ class Commands:
             ],
             [
                 ['pomoc', 'komendy', 'help'],
-                ['Dostepne sa dwie komendy: *tablica _tresc_* oraz *pogoda*']
+                ['Dostepne sa dwie komendy: `tablica _tresc_` oraz `pogoda`']
             ]
         ]
 

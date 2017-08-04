@@ -91,6 +91,7 @@ def loop():
     
     while True:
         event_list = sc.rtm_read()
+        redraw_screen = False
         if len(event_list) > 0:
             for event in event_list:
                 log.save_event(event)
@@ -99,14 +100,19 @@ def loop():
                         message = event.get('text').encode('ascii', 'replace'),
                         user = event.get('user'), 
                         channel = event.get('channel'))
+                    redraw_screen = True
 
         disp.key_check()        
         wb.write(psa.check_scheduler(), True)
-        disp.draw_data(log.get_log(), cfg.get_settings('window_title_log'), 
-            1, 2, 6, disp.get_color('red'))
-        disp.draw_data(wb.get_board(), cfg.get_settings('window_title_board'), 
-            1, 10, disp.get_height() - 15, disp.get_color('white'))
-        disp.refresh()            
+        if redraw_screen:
+            disp.draw_data(log.get_log(), 
+                cfg.get_settings('window_title_log'), 
+                1, 2, 6, disp.get_color('red'))
+            disp.draw_data(wb.get_board(), 
+                cfg.get_settings('window_title_board'), 
+                1, 10, disp.get_height() - 15, disp.get_color('white'))
+            disp.refresh()            
+        
         time.sleep(cfg.get_settings('delay'))
 
 if __name__=='__main__':
