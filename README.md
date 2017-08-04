@@ -17,7 +17,7 @@ Version 0.9 (asciimatic, cute but VERY slow)
 
 Main and most important part is Whiteboard. A place where anyone can put some text on it. Also the bot have time based sheduler for sending different messages (PSA) to the board.
 
-Modules available (v0.9):
+Modules available:
 
 - whiteboard
 - forecaster
@@ -29,7 +29,6 @@ Modules available (v0.9):
 Libs:
 
 - Python 2
-    - asciimatics
     - pyowm
     - slackclient
     - cPickle
