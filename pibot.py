@@ -18,7 +18,7 @@
 import os, slackclient, time, re, random
 
 # internal libs
-import filesystem, config, logger, display, commands
+import filesystem, config, logger, display_fast, commands
 import whiteboard, forecast, psas
 
 fs = filesystem.Filesystem()
@@ -29,7 +29,7 @@ wb = whiteboard.Whiteboard()
 fc = forecast.Forecast()
 sc = slackclient.SlackClient(cfg.get_api_key('slack'))
 psa = psas.PublicServiceAnnaucments()
-disp = display.Display()
+disp = display_fast.Display()
 
 def get_mention(user):
     return '<@{user}>'.format(user=user)
@@ -88,9 +88,10 @@ def loop():
     log.save(cmds.get_psa('welcome'))
     disp.draw_header()
     disp.draw_footer()
-    disp.refresh()
     
     while True:
+        disp.clear()
+        disp.draw_header()
         event_list = sc.rtm_read()
         redraw_screen = False
         if len(event_list) > 0:
@@ -102,18 +103,16 @@ def loop():
                         user = event.get('user'), 
                         channel = event.get('channel'))
                 redraw_screen = True
-
-        disp.key_check()        
+       
         wb.write(psa.check_scheduler(), True)
-        if redraw_screen:
-            disp.draw_data(log.get_log(), 
-                cfg.get_settings('window_title_log'), 
-                1, 2, 6, disp.get_color('red'))
-            disp.draw_data(wb.get_board(), 
-                cfg.get_settings('window_title_board'), 
-                1, 10, disp.get_height() - 15, disp.get_color('white'))
-            disp.refresh()            
-        
+        disp.draw_data(log.get_log(), 
+            cfg.get_settings('window_title_log'), 
+            cfg.get_settings('window_rows_log'))
+        disp.draw_data(wb.get_board(),
+            cfg.get_settings('window_title_board'), 
+            cfg.get_settings('window_rows_board'))
+        disp.draw_footer()            
+    
         time.sleep(cfg.get_settings('delay'))
 
 if __name__=='__main__':

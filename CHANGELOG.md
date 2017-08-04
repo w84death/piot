@@ -1,12 +1,12 @@
 # PiBot
 
 ## In Development
-- 0.12
-    - light/fast mode for Raspberry Pi Zero
-    - UI refresh seperated from slack client refresh
-
+- 0.13
+    - ???
+    
 ## Released
-
+- 0.12
+    - light/fast display module for Raspberry Pi Zero
 - 0.11
     - config setting for enabling modules
     - asciimatics moved to seperate module (for easy change)
