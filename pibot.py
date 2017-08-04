@@ -84,16 +84,27 @@ def post_message(message, channel):
         as_user = True)
     return True
 
+def render_screen():
+    disp.clear()
+    disp.draw_header() 
+    disp.draw_data(log.get_log(), 
+        cfg.get_settings('window_title_log'), 
+        cfg.get_settings('window_rows_log'))
+    disp.draw_data(wb.get_board(),
+        cfg.get_settings('window_title_board'), 
+        cfg.get_settings('window_rows_board'))
+    disp.draw_footer()
+    return True
+
 def loop():
     log.save(cmds.get_psa('welcome'))
     disp.draw_header()
     disp.draw_footer()
     
     while True:
-        disp.clear()
-        disp.draw_header()
         event_list = sc.rtm_read()
         redraw_screen = False
+        
         if len(event_list) > 0:
             for event in event_list:
                 log.save_event(event)
@@ -105,13 +116,9 @@ def loop():
                 redraw_screen = True
        
         wb.write(psa.check_scheduler(), True)
-        disp.draw_data(log.get_log(), 
-            cfg.get_settings('window_title_log'), 
-            cfg.get_settings('window_rows_log'))
-        disp.draw_data(wb.get_board(),
-            cfg.get_settings('window_title_board'), 
-            cfg.get_settings('window_rows_board'))
-        disp.draw_footer()            
+        
+        if redraw_screen: 
+            render_screen()            
     
         time.sleep(cfg.get_settings('delay'))
 
