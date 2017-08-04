@@ -33,14 +33,21 @@ class color:
 class Display:
     def __init__(self):  
         self.cfg = config.Config()        
-        
-   
+        self.columns, self.rows = self.get_dimensions()
+    
+    def get_dimensions(self):
+        rows, columns = os.popen('stty size', 'r').read().split()
+        return int(columns), int(rows)
+
+    def get_columns(self):
+        return self.columns
+
+    def get_rows(self):
+        return self.rows
 
     def compose_footer(self):
         footer = '[?] Wyslij wiadomosc *tablica tresc* do @mietek na firmowym Slacku!'
         return footer
-
-
 
     def clear(self):
         os.system('clear')
@@ -48,13 +55,13 @@ class Display:
 
     def compose_titlebar(self, title = 'WINDOW', char = '-'):
         bar = '{char}[  {title}  ]'.format(char=char, title=title)
-        for i in range(0, self.cfg.get_settings('screen_width')-len(bar)):
+        for i in range(0, self.get_columns() - len(bar)):
             bar += char
         return bar
 
     def compose_separator(self, char = '-'):
         separator = ''
-        for i in range(0, self.cfg.get_settings('screen_width')):
+        for i in range(0, self.get_columns()):
             separator += char
         return separator
 
@@ -62,7 +69,7 @@ class Display:
         return '> {text}'.format(text=text)
 
     def draw_data(self, data, title, show_last):
-        print(color.BOLD + color.LIGHT_CYAN + self.compose_titlebar(title, '='))
+        print(color.BOLD + color.LIGHT_CYAN + self.compose_titlebar(title, '_'))
 
         for i in range(len(data)-show_last, len(data)):
             if i > -1 and i < len(data):

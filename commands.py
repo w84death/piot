@@ -16,7 +16,7 @@ class Commands:
 
         self.psa = {
             'welcome': ['Wrocilem...', 'Gotowy do pracy...'],
-            'time': ['Minela godzina {time}!', 'Kolejna, godzina za nami!', 'To juz {time}!'],
+            'time': ['Minela godzina {time}!', '{time} Kolejna, godzina za nami! ', 'To juz {time}!'],
             'standup': ['Standup czas zaczac. Jest {time}!', 'Niech druzyna powstanie do daily o {time}!']
         }
 
