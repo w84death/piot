@@ -1,10 +1,20 @@
 # PiBot
 
 ## In Development
-- 0.13
-    - color theme
+- beta 1
+    - bugfixes
 
 ## Released
+- 0.14
+    - preparing for stable release
+        - code cleaning
+        - commands/messages change to official one
+    - smarter title bars
+    - responsive layput (check only on start for performance reasons)
+    - new icon!
+- 0.13
+    - color theme
+    - removed asciimatics due to very low performance
 - 0.12
     - light/fast display module for Raspberry Pi Zero
 - 0.11

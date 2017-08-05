@@ -21,8 +21,8 @@ class Whiteboard:
 
         template = '{time} {message}'
         if psa:
-            template_frame = '[!] ***'
-            template = '[!] *** {message}'
+            template_frame = '*** [{time}] ***'
+            template = '[!] {message}'
 
         t = strftime("%H:%M", localtime())
         message = message.replace(self.cmds.get_cmd('board')['cmd'], '').strip()

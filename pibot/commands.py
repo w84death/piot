@@ -15,14 +15,14 @@ class Commands:
         }
 
         self.psa = {
-            'welcome': ['Wrocilem...', 'Gotowy do pracy...'],
+            'welcome': ['I am back...', 'Ready to work...'],
             'time': ['Minela godzina {time}!', '{time} Kolejna, godzina za nami! ', 'To juz {time}!'],
-            'standup': ['Standup czas zaczac. Jest {time}!', 'Niech druzyna powstanie do daily o {time}!']
+            'standup': ['Stand Up! czas zaczac. Jest {time}!', 'Niech druzyna powstanie do apelu o {time}!']
         }
 
         self.chat = [
             [
-                ['witam', 'witaj', 'czesc', 'hi', 'yo', 'elo', 'siema'],
+                ['hello', 'hi', 'witam', 'welcome', 'witaj', 'czesc', 'hi', 'yo', 'elo', 'siema'],
                 ['Witam pana kierownika!', 'Uszanowanie!', 'Witaj, {mention}']
             ],
             [
@@ -30,7 +30,7 @@ class Commands:
                 ['Alkohol?', 'Napil bym sie...']
             ],
             [
-                ['chuj', 'chuju', 'burak', 'debil'],
+                ['chuj', 'chuju', 'burak', 'debil', 'idiot'],
                 ['A po co zaraz tak wulgarnie?', 'Taki mocny w gebie to moze poratujesz 50gr?']
             ],
             [

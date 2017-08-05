@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 #
-# PiBot - Intranet Chatbot System 
+# PIBOT ZERO - Intranet Chatbot System 
 #
 # see LICENSE file for licence
 # see README.md for more info
