@@ -11,8 +11,8 @@ PiBot is an Intranet Chatbot System. It is a software for Raspberry Pi written i
 
 ![pibot zero logo](http://i.imgur.com/2JLQR3r.png)
 
-Version 0.13 with pure printed text, fast as hungry rat
-![Mietek v0.13](http://i.imgur.com/iz6dXNW.png)
+Latest version with pure terminal text, fast as hungry rat
+![Mietek v0.14.3](http://i.imgur.com/iz6dXNW.png)
 
 Main and most important part is Whiteboard. A place where anyone can put some text on it. Also the bot have time based sheduler for sending different messages (PSA) to the board.
 
