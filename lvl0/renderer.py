@@ -24,6 +24,7 @@ class Renderer:
     def clear(self, fast = False):
         if not fast:
             os.system('clear')
+            os.system('setterm -cursor off')
         else:
             print("\033[0;0f")
         return True
