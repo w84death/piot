@@ -5,9 +5,9 @@ class Config:
         self.settings = {
             'app_name': 'LvL0 - Pi Zero Terminal Shooter',
             'codename': 'lvlzero',
-            'footer_text': '(c) 2017 P1X | by kj',
+            'footer_text': 'WAIT. EXECUTING COMMANDS...',
             'version': '0.1',
-            'delay': 0.1,
+            'delay': 1,
             'window_title_pos': 4,
             'window_title_log': 'GAME LOG',
             'window_title_world': 'BATTLEGROUND - JOIN TO FIGHT!',
@@ -16,7 +16,9 @@ class Config:
             'board_db': 'board_db.p',
             'board_msg_len_min': 3,
             'board_msg_len_max': 140,
-            'reader_enabled': False
+            'reader_enabled': False,
+            'char_ai': 'R',
+            'char_player': '@'
         }
 
         self.styles = {

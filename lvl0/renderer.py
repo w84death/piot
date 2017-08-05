@@ -44,10 +44,10 @@ class Renderer:
         return separator
 
     def compose_info(self, players, game_time):
-        info = '[ PLAYERS: {players}/{max_players} ] [ GAME TIME: {time}] [ HP: {hp}/{hp_max}][ SCORE: {score}]'.format(
+        info = '/ HP: {hp}/{hp_max} / SCORE: {score} // PLAYERS: {players}/{max_players} // GAME TURN: {turn} ///'.format(
             players=str(players).zfill(2),
             max_players = 16,
-            time = str(game_time).zfill(6),
+            turn = str(game_time).zfill(6),
             hp = 3,
             hp_max = 3,
             score = str(int(game_time*0.25)).zfill(6))
@@ -72,12 +72,8 @@ class Renderer:
         return True
 
     def draw_map(self, width, height, map_data, players_data, game_time): 
-        for p in players_data:
-            if game_time % 5 == 0:
-                spr = 'X'
-            else:
-                spr = '@'
-            map_data[p['y']][p['x']] = spr
+        
+        
 
         print('{font}{color}{bar}'.format(
             font = self.cfg.get_style('bold'), 
@@ -86,7 +82,20 @@ class Renderer:
 
         for y in range(1, height-1):
             for x in range(1, width-1):
-                print(map_data[y][x], end='')
+                ent = False
+                for p in players_data:
+                    pos_x, pos_y = p.get_pos()
+                    if pos_x == x and pos_y == y:
+                        print('{color}{char}{color_reset}'.format(
+                            color = p.get_color(), 
+                            char = p.get_char(),
+                            color_reset = self.cfg.get_style('cyan')
+                        ), end='')
+                        ent = True
+                if not ent:
+                    print('{color}{map}'.format(
+                        color = self.cfg.get_style('cyan'),
+                        map = map_data[y][x]), end='')
             print('')
 
         print('{color}{bar}'.format(

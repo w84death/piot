@@ -27,8 +27,12 @@ cfg = config.Config()
 wrd.load_map()
 width, height = wrd.get_map_dimensions()
 
-plr.player_join(plr.get_player_template('test', 18,4))
- 
+player_id = plr.player_join(('JOE', 18, 4, 0, 3))
+plr.set_master_id(player_id)
+
+plr.player_join(('ROBOT1', 7, 4, 1, 3))
+plr.player_join(('ROBOT2', 30, 10, 1, 3))
+
 game_time = 0
 
 while True:
@@ -39,6 +43,8 @@ while True:
         wrd.get_map_data(), 
         plr.get_players_data(), 
         game_time)
+    cmd = input('> ')
+    plr.handle_command(cmd)
     ren.draw_footer()
 
     time.sleep(cfg.get_settings('delay'))
