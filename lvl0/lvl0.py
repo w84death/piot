@@ -3,7 +3,8 @@
 
 #
 # lvl0 - Level Zero
-# Telnet multiplayer game
+# Proof of concept for terminal mulitplayer shooter
+# For now it is a single player simulator
 #
 # see LICENSE file for licence
 # see README.md for more info
@@ -12,31 +13,33 @@
 # (c) 2017 kj/P1X
 #
 
-import socket
-import threading
+import world
+import renderer
+import time
+import players
+import config
 
-sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-sock.bind(('0.0.0.0', 22))
-sock.listen(1)
+wrd = world.World()
+ren = renderer.Renderer()
+plr = players.Players()
+cfg = config.Config()
 
-clients = []
+wrd.load_map()
+width, height = wrd.get_map_dimensions()
 
-def handler(c, a):
-    global clients
-    while True:
-        data = c.recv(1024)
-        for client in clients:
-            if not client == c:
-                client.send(bytes(data))
-        if not data:
-            clients.remove(c)
-            c.close()
-            break
+plr.player_join(plr.get_player_template('test', 18,4))
+ 
+game_time = 0
 
 while True:
-    c, a = sock.accept()
-    thread = threading.Thread(target=handler,args=(c, a))
-    thread.daemon = True
-    thread.start()
-    clients.append(c)
-    print(clients)
+    ren.clear()
+    ren.draw_header()
+    ren.draw_info(plr.get_total_players(), game_time)
+    ren.draw_map(width, height, 
+        wrd.get_map_data(), 
+        plr.get_players_data(), 
+        game_time)
+    ren.draw_footer()
+
+    time.sleep(cfg.get_settings('delay'))
+    game_time += 1
