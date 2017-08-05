@@ -46,13 +46,13 @@ class Display:
         return '> {text}'.format(text=text)
 
     def draw_data(self, data, title, show_last):
-        print(self.cfg.get_style('bold') + self.cfg.get_style('cyan') + self.compose_titlebar(title))
+        print(self.cfg.get_style('bold') + self.cfg.get_style('lightcyan') + self.compose_titlebar(title))
 
         for i in range(len(data)-show_last, len(data)):
             if i > -1 and i < len(data):
                 print(self.cfg.get_style('white') + self.compose_data_row(str(data[i])))
         
-        print(self.cfg.get_style('bold') + self.cfg.get_style('lightcyan') + self.compose_separator())
+        print(self.cfg.get_style('bold') + self.cfg.get_style('cyan') + self.compose_separator())
         return True
 
     def draw_header(self):
