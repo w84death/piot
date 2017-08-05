@@ -3,7 +3,9 @@
 Raspberry Pi IoT Software
 
 
-## PiBot
+## PIBOT ZERO
+
+![pibot zero logo](http://i.imgur.com/yNxe6bC.png)
 
 PiBot is an Intranet Chatbot System. It is a software for Raspberry Pi written in Python. Main purpose is to provide services for office space intranet. 
 
