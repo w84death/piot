@@ -3,43 +3,35 @@ class Commands:
     def __init__(self):
         self.cmds = {
             'board': {
-                'cmd': 'tablica',
-                'success': 'Zapisalem na tablicy :)',
-                'failure': 'Wiadomosc musi byc *dluzsza niz {min}* znaki i *krotsza niz {max}* znakow.'
+                'cmd': 'board',
+                'success': 'I wrote your message one the board :)',
+                'failure': 'Not good. Message should be *more than {min}* but less than {max}* characters.'
             },
             'forecast': {
-                'cmd': 'pogoda',
-                'success': 'Jest teraz *{temp} stopni Celsjusza*. Zachmurzenie *{clouds}%*. Wieje z predkoscia *{speed} km/h*.',
-                'failure': 'Nie poge pobrac prognozy pogody :('
+                'cmd': 'weather',
+                'success': 'Right now is *{temp}*C*. Clouds *{clouds}%*. Wind *{speed} km/h*.',
+                'failure': 'Can not fetch the weather for the cloud... How ironic is that?'
             }
         }
 
         self.psa = {
             'welcome': ['I am back...', 'Ready to work...'],
-            'time': ['Minela godzina {time}!', '{time} Kolejna, godzina za nami! ', 'To juz {time}!'],
-            'standup': ['Stand Up! czas zaczac. Jest {time}!', 'Niech druzyna powstanie do apelu o {time}!']
+            'time': ['{time} goes by!', '{time} ...and the next hour just went away! ', 'It is a {time}!'],
+            'standup': ['It is time. A Stand Up time. Or just {time}!', 'Team! Wake up and stand, it is {time} already!']
         }
 
         self.chat = [
             [
                 ['hello', 'hi', 'witam', 'welcome', 'witaj', 'czesc', 'hi', 'yo', 'elo', 'siema'],
-                ['Witam pana kierownika!', 'Uszanowanie!', 'Witaj, {mention}']
+                ['Welcome my dear human!', 'For your service, human.', 'Hello, {mention}', 'Hello human fellow!']
             ],
             [
-                ['wino', 'winiacz', 'piwo', 'piwko', 'browar'],
-                ['Alkohol?', 'Napil bym sie...']
+                ['identity'],
+                ['I am a bot, chatbot.']
             ],
             [
-                ['chuj', 'chuju', 'burak', 'debil', 'idiot'],
-                ['A po co zaraz tak wulgarnie?', 'Taki mocny w gebie to moze poratujesz 50gr?']
-            ],
-            [
-                ['pearson', 'ioki', 'korpo'],
-                ['Szlachta nie pracuje!', 'Korposzczury...', 'Do roboty a nie tylko te jutuby!']
-            ],
-            [
-                ['pomoc', 'komendy', 'help'],
-                ['Dostepne sa dwie komendy: `tablica _tresc_` oraz `pogoda`']
+                ['help', 'commands'],
+                ['Here are available commands/messages that I can understand at the moment: `board _message_to_post_` and `weather`']
             ]
         ]
 

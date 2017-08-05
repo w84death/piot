@@ -3,12 +3,19 @@
 ## In Development
 - beta 1
     - bugfixes
+    - help for commands
+    - more options for board
+        - board read
+        - board last
+    - more options for weather
+        - weahter for realtime stats
+        - forecast for future +4h weather
 
 ## Released
 - 0.14
     - preparing for stable release
         - code cleaning
-        - commands/messages change to official one
+        - commands/messages change to official one (english)
     - smarter title bars
     - responsive layput (check only on start for performance reasons)
     - new icon!
