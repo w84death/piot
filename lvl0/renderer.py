@@ -21,8 +21,11 @@ class Renderer:
         footer = '// {body} //'.format(body = self.cfg.get_settings('footer_text'))
         return footer
 
-    def clear(self):
-        os.system('clear')
+    def clear(self, fast = False):
+        if not fast:
+            os.system('clear')
+        else:
+            print("\033[0;0f")
         return True
 
     def compose_titlebar(self, title = 'WINDOW', char = '~'):

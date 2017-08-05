@@ -6,7 +6,7 @@ class Config:
             'app_name': 'LvL0 - Pi Zero Terminal Shooter',
             'codename': 'lvlzero',
             'footer_text': 'WAIT. EXECUTING COMMANDS...',
-            'version': '0.2',
+            'version': '0.3',
             'delay': 0.5,
             'window_title_pos': 4,
             'window_title_log': 'GAME LOG',

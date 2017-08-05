@@ -37,7 +37,7 @@ plr.player_join(('ROBOT2', 30, 10, 1, 3))
 
 game_time = 0
 
-
+ren.clear()
 while True:
 
     while sys.stdin in select.select([sys.stdin], [], [], 0)[0]:
@@ -45,7 +45,7 @@ while True:
         if line:
             plr.handle_command(line)   
     else:
-        ren.clear()
+        ren.clear(True)
         ren.draw_header()
         ren.draw_info(plr.get_total_players(), game_time)
         ren.draw_map(width, height, 

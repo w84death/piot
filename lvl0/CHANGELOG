@@ -1,0 +1,13 @@
+# CHANGELOG
+
+
+- 0.3
+    - faster clear screen (just redrawn from 0,0)
+- 0.2
+    - realtime keyboard readings
+- 0.1
+    - map renderer
+    - player class
+    - enemy class
+    - random ai
+    - gui implementation
