@@ -27,14 +27,15 @@ ren = renderer.Renderer()
 plr = players.Players(wrd)
 cfg = config.Config()
 
-wrd.load_map()
+wrd.load_map('map_02.txt')
 width, height = wrd.get_map_dimensions()
 
-player_id = plr.player_join(('JOE', 18, 4, 0, 3))
+player_id = plr.player_join(('JOE', 26, 8, 0, 3))
 plr.set_master_id(player_id)
 
-plr.player_join(('ROBOT1', 7, 4, 1, 3))
-plr.player_join(('ROBOT2', 30, 10, 1, 3))
+plr.player_join(('ROBOT1', 7, 4, 1, 1))
+plr.player_join(('ROBOT2', 40, 12, 1, 1))
+plr.player_join(('ROBOT2', 60, 14, 1, 1))
 
 game_time = 0
 
