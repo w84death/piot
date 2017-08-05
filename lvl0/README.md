@@ -4,7 +4,7 @@
 
 ![prototype of LvL0](http://i.imgur.com/s2JRCMz.png)
 
-![prototype realtime gameplay](http://i.imgur.com/aZMktZi.gifv)
+![prototype realtime gameplay](http://i.imgur.com/aZMktZi.gif)
 
 # Gameplay
 
