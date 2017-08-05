@@ -13,6 +13,9 @@ class Entity:
         self.ai = ai # ai or player?
         self.last_move = (0,0)
 
+    def is_ai(self):
+        return self.ai
+
     def get_pos(self):
         return self.pos_x, self.pos_y
 
@@ -27,16 +30,20 @@ class Entity:
         else:
             return self.cfg.get_settings('char_player')
 
-    def move(self, target = False):
+    def move(self, wrd, target = False):
         if not target:
             new_x, new_y = self.last_move
         else:
             new_x, new_y = target
-        self.last_move = (new_x, new_y)
-        self.pos_x += new_x
-        self.pos_y += new_y
-        self.ap += 1
-        return True
+        
+        if wrd.check_move((self.pos_x + new_x, self.pos_y + new_y)):
+            self.last_move = (new_x, new_y)
+            self.pos_x += new_x
+            self.pos_y += new_y
+            self.ap += 1
+            return True
+        else:
+            return False
 
     def add_command(self, command):
         self.commands.append(command)

@@ -32,3 +32,14 @@ class World:
 
     def get_map_dimensions(self):
         return self.width, self.height
+
+    def check_move(self, pos):
+        x, y = pos
+        if x>0 and y>0 and x<self.width and y<self.height:
+            waypoint = self.map_data[y][x]
+            if waypoint == '.':
+                return True
+            else:
+                return False
+        else:
+            return False

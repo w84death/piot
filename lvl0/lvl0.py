@@ -18,10 +18,12 @@ import renderer
 import time
 import players
 import config
+import sys
+import select
 
 wrd = world.World()
 ren = renderer.Renderer()
-plr = players.Players()
+plr = players.Players(wrd)
 cfg = config.Config()
 
 wrd.load_map()
@@ -35,17 +37,23 @@ plr.player_join(('ROBOT2', 30, 10, 1, 3))
 
 game_time = 0
 
-while True:
-    ren.clear()
-    ren.draw_header()
-    ren.draw_info(plr.get_total_players(), game_time)
-    ren.draw_map(width, height, 
-        wrd.get_map_data(), 
-        plr.get_players_data(), 
-        game_time)
-    cmd = input('> ')
-    plr.handle_command(cmd)
-    ren.draw_footer()
 
-    time.sleep(cfg.get_settings('delay'))
-    game_time += 1
+while True:
+
+    while sys.stdin in select.select([sys.stdin], [], [], 0)[0]:
+        line = sys.stdin.readline()
+        if line:
+            plr.handle_command(line)   
+    else:
+        ren.clear()
+        ren.draw_header()
+        ren.draw_info(plr.get_total_players(), game_time)
+        ren.draw_map(width, height, 
+            wrd.get_map_data(), 
+            plr.get_players_data(), 
+            game_time)            
+        ren.draw_footer()
+        plr.ai()
+
+        time.sleep(cfg.get_settings('delay'))
+        game_time += 1
