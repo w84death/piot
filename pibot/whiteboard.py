@@ -21,7 +21,7 @@ class Whiteboard:
 
         template = '{time} {message}'
         if psa:
-            template_frame = '*** [{time}] ***'
+            template_frame = '>>>'
             template = '[!] {message}'
 
         t = strftime("%H:%M", localtime())
