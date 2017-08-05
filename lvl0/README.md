@@ -1,5 +1,9 @@
 # LvL0 - Telnet Multiplayer Shooter
 
+# Prototype
+
+![prototype of LvL0](http://i.imgur.com/s2JRCMz.png)
+
 # Gameplay
 
 - each player controls one tank
