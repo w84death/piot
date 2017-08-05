@@ -6,7 +6,7 @@ class Config:
             'app_name': 'PIBOT ZERO - Intranet Chatbot System ',
             'codename': 'mietek',
             'footer_text': 'Just chat with the bot :) Send message *help* to @pibotzero on the company Slack!',
-            'version': '0.14.1',
+            'version': '0.14.3',
             'delay': 0.9,
             'screen_width': 80,
             'window_title_pos': 4,

@@ -17,6 +17,7 @@
         - code cleaning
         - commands/messages change to official one (english)
     - smarter title bars
+    - draw data can change text color
     - responsive layput (check only on start for performance reasons)
     - new icon!
 - 0.13

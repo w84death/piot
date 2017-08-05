@@ -89,10 +89,12 @@ def render_screen():
     disp.draw_header() 
     disp.draw_data(log.get_log(), 
         cfg.get_settings('window_title_log'), 
-        cfg.get_settings('window_rows_log'))
+        cfg.get_settings('window_rows_log'),
+        cfg.get_style('cyan'))
     disp.draw_data(wb.get_board(),
         cfg.get_settings('window_title_board'), 
-        cfg.get_settings('window_rows_board'))
+        cfg.get_settings('window_rows_board'),
+        cfg.get_style('white'))
     disp.draw_footer()
     return True
 

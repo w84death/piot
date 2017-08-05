@@ -45,12 +45,12 @@ class Display:
     def compose_data_row(self, text):
         return '> {text}'.format(text=text)
 
-    def draw_data(self, data, title, show_last):
+    def draw_data(self, data, title, show_last, text_color):
         print(self.cfg.get_style('bold') + self.cfg.get_style('lightcyan') + self.compose_titlebar(title))
 
         for i in range(len(data)-show_last, len(data)):
             if i > -1 and i < len(data):
-                print(self.cfg.get_style('white') + self.compose_data_row(str(data[i])))
+                print(text_color + self.compose_data_row(str(data[i])))
         
         print(self.cfg.get_style('bold') + self.cfg.get_style('cyan') + self.compose_separator())
         return True
