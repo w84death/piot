@@ -2,9 +2,9 @@
 
 # Prototype
 
-![prototype of LvL0](http://i.imgur.com/s2JRCMz.png)
+![LvL0](http://i.imgur.com/d6hiTP5.jpg)
 
-![prototype realtime gameplay](http://i.imgur.com/aZMktZi.gif)
+![LvL0](http://i.imgur.com/TsCWvW6.png)
 
 # Gameplay
 
