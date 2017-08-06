@@ -6,7 +6,7 @@ class Config:
             'app_name': 'PIBOT ZERO - Intranet Chatbot System ',
             'codename': 'mietek',
             'footer_text': 'Just chat with the bot :) Send message *help* to @pibotzero on the company Slack!',
-            'version': '0.14.3',
+            'version': '0.14.4',
             'delay': 0.9,
             'screen_width': 80,
             'window_title_pos': 4,
@@ -22,12 +22,12 @@ class Config:
 
         self.styles = {
             # colors
-            'clear': '\033[1;30;47m',
-            'white': '\033[0;30;47m',
-            'black': '\033[1;37;40m',
-            'cyan': '\033[0;34;47m',
-            'lightcyan': '\033[1;34;47m',
-            'yellow': '\033[1;33;47m',
+            'clear': '\033[1;30;44m',
+            'white': '\033[1;37;44m',
+            'black': '\033[1;30;44m',
+            'cyan': '\033[0;37;44m',
+            'lightcyan': '\033[1;37;44m',
+            'yellow': '\033[1;33;44m',
             # font
             'bold': '\033[1m',
             'underline': '\033[4m' 
