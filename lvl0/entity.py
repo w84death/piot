@@ -8,6 +8,7 @@ class Entity:
         self.pos_x = x
         self.pos_y = y
         self.commands = [] # heap of commands to execute
+        self.max_cmds = 8
         self.ap = 0 # action points
         self.hp = hp # hit points
         self.ai = ai # ai or player?
@@ -45,6 +46,31 @@ class Entity:
         else:
             return False
 
-    def add_command(self, command):
-        self.commands.append(command)
-        return True
+    def add_command(self, command, target):
+        if len(self.commands) < self.max_cmds:
+            self.commands.append((command, target))
+            return True
+        else:
+            return False
+
+    def get_commands(self):
+        return self.commands
+
+    def is_ready(self):
+        return True if len(self.commands) == self.max_cmds else False
+
+    def is_empty_commands(self):
+        return True if len(self.commands) == 0 else False
+
+    def execute_commands(self, wrd):
+        if len(self.commands)>0:
+            cmd, target = self.commands[0]
+
+            if cmd == 'move':
+                self.move(wrd, target)
+            elif cmd == 'pass':
+                pass
+            del self.commands[0]
+            return True
+        else:
+            return False

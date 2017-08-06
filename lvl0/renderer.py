@@ -57,6 +57,17 @@ class Renderer:
             score = str(int(game_time*0.25)).zfill(6))
         return info
 
+    def compose_player_input(self, input_commands, cmds = False, cmds_max = False):
+        if input_commands:
+            inp = '[{color}{cmds}/{cmds_max}] > '.format(
+                color=self.cfg.get_style('lightcyan'),
+                cmds=str(cmds).zfill(2),
+                cmds_max=str(8).zfill(2))
+        else:
+            inp = '[{color}READY?] > '.format(
+                color=self.cfg.get_style('lightcyan'))
+        return inp
+
     def compose_data_row(self, text):
         return '> {text}'.format(text=text)
 
@@ -76,32 +87,34 @@ class Renderer:
         return True
 
     def draw_map(self, width, height, map_data, players_data, game_time): 
-        
-        
-
-        print('{font}{color}{bar}'.format(
+        # TITLEBAR
+        print('{font}{color}{titlebar}'.format(
             font = self.cfg.get_style('bold'), 
             color = self.cfg.get_style('lightcyan'), 
-            bar = self.compose_titlebar(self.cfg.get_settings('window_title_world'))))
+            titlebar = self.compose_titlebar(self.cfg.get_settings('window_title_world'))))
 
+        # THE MAP
         for y in range(1, height-1):
             for x in range(1, width-1):
-                ent = False
                 for p in players_data:
-                    pos_x, pos_y = p.get_pos()
-                    if pos_x == x and pos_y == y:
+                    # PLAYERS
+                    if p.get_pos() == ((x, y)):
                         print('{color}{char}{color_reset}'.format(
                             color = p.get_color(), 
                             char = p.get_char(),
                             color_reset = self.cfg.get_style('cyan')
                         ), end='')
-                        ent = True
-                if not ent:
+                        break
+                # TERRAIN
+                else:
                     print('{color}{map}'.format(
                         color = self.cfg.get_style('cyan'),
                         map = map_data[y][x]), end='')
             print('')
 
-        print('{color}{bar}'.format(
+        # SEPARATOR/FOOTER
+        print('{color}{separator}'.format(
             color = self.cfg.get_style('cyan'),
-            bar = self.compose_separator()))
+            separator = self.compose_separator()))
+
+        return True
