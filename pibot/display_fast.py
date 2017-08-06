@@ -21,7 +21,9 @@ class Display:
         return footer
 
     def clear(self):
+        print(self.cfg.get_style('clear'))
         os.system('clear')
+
         return True
 
     def compose_titlebar(self, title = 'WINDOW', char = '~'):

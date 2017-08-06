@@ -30,11 +30,14 @@ cfg = config.Config()
 wrd.load_map('map_02.txt')
 width, height = wrd.get_map_dimensions()
 
-plr.set_master_id(plr.player_join(('HUMAN', 26, 8, 0, 3)))
+plr.set_master_id(plr.player_join(('HUMAN', 28, 12, 0, 3)))
 
 plr.player_join(('ROBOT1', 7, 4, 1, 1))
 plr.player_join(('ROBOT2', 40, 12, 1, 1))
-plr.player_join(('ROBOT2', 60, 14, 1, 1))
+plr.player_join(('ROBOT3', 70, 8, 1, 1))
+plr.player_join(('ROBOT4', 60, 9, 1, 1))
+plr.player_join(('ROBOT5', 70, 10, 1, 1))
+
 
 game_time = 0
 

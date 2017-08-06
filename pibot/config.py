@@ -22,11 +22,12 @@ class Config:
 
         self.styles = {
             # colors
-            'white': '\033[37m',
-            'black': '\033[30m',
-            'cyan': '\033[0;36m',
-            'lightcyan': '\033[1;36m',
-            'yellow': '\033[1;33m',
+            'clear': '\033[1;30;47m',
+            'white': '\033[0;30;47m',
+            'black': '\033[1;37;40m',
+            'cyan': '\033[0;34;47m',
+            'lightcyan': '\033[1;34;47m',
+            'yellow': '\033[1;33;47m',
             # font
             'bold': '\033[1m',
             'underline': '\033[4m' 
