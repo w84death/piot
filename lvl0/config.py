@@ -7,7 +7,7 @@ class Config:
             'app_name': 'LvL0 - Pi Zero Terminal Shooter',
             'codename': 'lvlzero',
             'footer_text': 'COMMANDS: GO UP/RI/DO/LE, READY/HELP/QUIT',
-            'prompt_0_text': '{color}[PHASE 00] FILL UP {max} COMMANDS. ENTER COMMAND {no}: ',
+            'prompt_0_text': '{color}[PHASE 00] FILL UP TO {max} COMMANDS. ENTER COMMAND {no}: ',
             'prompt_1_text': '{color}[PHASE 01] TYPE READY TO START: ',
             'delay': 0.5,
             'window_title_pos': 4,
@@ -20,12 +20,21 @@ class Config:
             # colors
             'white': '\033[37m',
             'black': '\033[30m',
-            'cyan': '\033[0;36m',
+            'cyan': '\033[0;30;46m',
             'lightcyan': '\033[1;36m',
             'yellow': '\033[1;33m',
             # font
             'bold': '\033[1m',
-            'underline': '\033[4m' 
+            'underline': '\033[4m',
+
+            'header': '\033[0;30;43m',
+            'infobar':  '\033[0;36;46m',
+
+            '@': '\033[0;37;42m',
+            '.': '\033[0;32;42m',
+            '#': '\033[0;30;42m',
+            '_': '\033[0;34;44m',
+            'V': '\033[0;30;43m'
         }
 
         self.api_keys = {

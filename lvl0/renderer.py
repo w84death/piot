@@ -48,7 +48,8 @@ class Renderer:
         return separator
 
     def compose_info(self, players, game_time):
-        info = '/ HP: {hp}/{hp_max} / SCORE: {score} // PLAYERS: {players}/{max_players} // GAME TURN: {turn} ///'.format(
+        info = '{color}/ HP: {hp}/{hp_max} / SCORE: {score} // PLAYERS: {players}/{max_players} // GAME TURN: {turn} ///'.format(
+            color=self.cfg.get_style('infobar'),
             players=str(players).zfill(2),
             max_players = 16,
             turn = str(game_time).zfill(6),
@@ -64,7 +65,7 @@ class Renderer:
                 no=str(cmds).zfill(2),
                 max=str(8).zfill(2))
         else:
-            inp = self.cfg.get_settings('prompt_0_text').format(
+            inp = self.cfg.get_settings('prompt_1_text').format(
                 color=self.cfg.get_style('lightcyan'))
         return inp
 
@@ -75,7 +76,7 @@ class Renderer:
         title = ' {app_name} [v{version}] '.format(
             app_name = self.cfg.get_settings('app_name'),
             version = self.cfg.get_settings('version'))
-        print(self.cfg.get_style('yellow') + title)
+        print(self.cfg.get_style('header') + title)
         return True
     
     def draw_footer(self):
@@ -108,7 +109,7 @@ class Renderer:
                 # TERRAIN
                 else:
                     print('{color}{map}'.format(
-                        color = self.cfg.get_style('cyan'),
+                        color = self.cfg.get_style(map_data[y][x]),
                         map = map_data[y][x]), end='')
             print('')
 
