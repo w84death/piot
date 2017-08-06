@@ -4,6 +4,7 @@
 - 0.6
     - better prompts
     - map coloring
+    - UI color theme
 - 0.5
     - back to initial idea: plan moves ahead
     - two game modes: input commands, watch as game execute commands

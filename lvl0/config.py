@@ -3,7 +3,7 @@ import os
 class Config:
     def __init__(self):
         self.settings = {
-            'version': '0.5',
+            'version': '0.6',
             'app_name': 'LvL0 - Pi Zero Terminal Shooter',
             'codename': 'lvlzero',
             'footer_text': 'COMMANDS: GO UP/RI/DO/LE, READY/HELP/QUIT',
@@ -20,21 +20,27 @@ class Config:
             # colors
             'white': '\033[37m',
             'black': '\033[30m',
-            'cyan': '\033[0;30;46m',
-            'lightcyan': '\033[1;36m',
+            'cyan': '\033[0;36;40m',
+            'lightcyan': '\033[1;36;40m',
             'yellow': '\033[1;33m',
             # font
             'bold': '\033[1m',
             'underline': '\033[4m',
 
-            'header': '\033[0;30;43m',
-            'infobar':  '\033[0;36;46m',
+            'default': '\033[0;30;46m',
+
+            'header': '\033[1;36;46m',
+            'infobar':'\033[0;30;46m',
+            'titlebar': '\033[1;36;40m',
+            'separator': '\033[1;36;40m',
+            'footer':'\033[0;30;46m',
+            'input': '\033[1;36;46m',
 
             '@': '\033[0;37;42m',
             '.': '\033[0;32;42m',
             '#': '\033[0;30;42m',
             '_': '\033[0;34;44m',
-            'V': '\033[0;30;43m'
+            'V': '\033[1;32;42m'
         }
 
         self.api_keys = {

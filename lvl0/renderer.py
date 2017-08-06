@@ -22,6 +22,7 @@ class Renderer:
         return footer
 
     def clear(self, fast = False):
+        print(self.cfg.get_style('default'))
         if not fast:
             os.system('clear')
             os.system('setterm -cursor off')
@@ -61,12 +62,12 @@ class Renderer:
     def compose_player_input(self, input_commands, cmds = False, cmds_max = False):
         if input_commands:
             inp = self.cfg.get_settings('prompt_0_text').format(
-                color=self.cfg.get_style('lightcyan'),
+                color=self.cfg.get_style('input'),
                 no=str(cmds).zfill(2),
                 max=str(8).zfill(2))
         else:
             inp = self.cfg.get_settings('prompt_1_text').format(
-                color=self.cfg.get_style('lightcyan'))
+                color=self.cfg.get_style('input'))
         return inp
 
     def compose_data_row(self, text):
@@ -80,18 +81,17 @@ class Renderer:
         return True
     
     def draw_footer(self):
-        print(self.cfg.get_style('cyan') + self.compose_footer())
+        print(self.cfg.get_style('footer') + self.compose_footer())
         return True
 
     def draw_info(self, players, game_time):
-        print(self.cfg.get_style('cyan') + self.compose_info(players, game_time))
+        print(self.cfg.get_style('infobar') + self.compose_info(players, game_time))
         return True
 
     def draw_map(self, width, height, map_data, players_data, game_time): 
         # TITLEBAR
-        print('{font}{color}{titlebar}'.format(
-            font = self.cfg.get_style('bold'), 
-            color = self.cfg.get_style('lightcyan'), 
+        print('{color}{titlebar}'.format(
+            color = self.cfg.get_style('titlebar'), 
             titlebar = self.compose_titlebar(self.cfg.get_settings('window_title_world'))))
 
         # THE MAP
@@ -115,7 +115,7 @@ class Renderer:
 
         # SEPARATOR/FOOTER
         print('{color}{separator}'.format(
-            color = self.cfg.get_style('cyan'),
+            color = self.cfg.get_style('separator'),
             separator = self.compose_separator()))
 
         return True
