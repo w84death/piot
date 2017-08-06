@@ -3,20 +3,15 @@ import os
 class Config:
     def __init__(self):
         self.settings = {
+            'version': '0.5',
             'app_name': 'LvL0 - Pi Zero Terminal Shooter',
             'codename': 'lvlzero',
             'footer_text': 'COMMANDS: GO UP/RI/DO/LE, READY/HELP/QUIT',
-            'version': '0.5',
+            'prompt_0_text': '{color}[PHASE 00] FILL UP {max} COMMANDS. ENTER COMMAND {no}: ',
+            'prompt_1_text': '{color}[PHASE 01] TYPE READY TO START: ',
             'delay': 0.5,
             'window_title_pos': 4,
-            'window_title_log': 'GAME LOG',
-            'window_title_world': 'BATTLEGROUND - JOIN TO FIGHT!',
-            'window_rows_log': 3,
-            'window_rows_board': 24,
-            'board_db': 'board_db.p',
-            'board_msg_len_min': 3,
-            'board_msg_len_max': 140,
-            'reader_enabled': False,
+            'window_title_world': 'BATTLEGROUND - PLAN YOUR MOVES WISELY!',
             'char_ai': 'R',
             'char_player': '@'
         }

@@ -59,12 +59,12 @@ class Renderer:
 
     def compose_player_input(self, input_commands, cmds = False, cmds_max = False):
         if input_commands:
-            inp = '[{color}{cmds}/{cmds_max}] > '.format(
+            inp = self.cfg.get_settings('prompt_0_text').format(
                 color=self.cfg.get_style('lightcyan'),
-                cmds=str(cmds).zfill(2),
-                cmds_max=str(8).zfill(2))
+                no=str(cmds).zfill(2),
+                max=str(8).zfill(2))
         else:
-            inp = '[{color}READY?] > '.format(
+            inp = self.cfg.get_settings('prompt_0_text').format(
                 color=self.cfg.get_style('lightcyan'))
         return inp
 
