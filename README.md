@@ -6,6 +6,8 @@ Raspberry Pi IoT Software
 
 ![LvL0 on Raspberry Pi Zero W + Dell Monitor](http://i.imgur.com/d6hiTP5.jpg)
 
+![LvL0 in Debian](http://i.imgur.com/TsCWvW6.png)
+
 LvL0 is a Pi Zero Terminal Shooter. You plan 8 moves ahead. Then game begins. Each player executes commands. Then process begins. Until last player is alive. 
 
 There is only one player. You. Multiplayer will be implemented in the future.
