@@ -11,7 +11,7 @@
         - weahter for realtime stats
         - forecast for future +4h weather
 
-## Released
+## Releasede
 - 0.14
     - preparing for stable release
         - code cleaning
