@@ -13,6 +13,7 @@
 #
 
 import socket
+import struct
 import threading
 import config
 
@@ -35,9 +36,10 @@ def handler(c, a):
 
     while True:
         data = c.recv(1024)
+
         for client in clients:
-            if client == c:
-                client.send((cfg.get_msg('recieved')))
+            if not client == c:
+                client.send(cfg.get_msg('chat') + bytes(data) + cfg.get_msg('chat_reset'))
         if not data:
             clients.remove(c)
             c.close()
@@ -46,6 +48,11 @@ def handler(c, a):
                 print(cfg.get_msg('disconnected'))
             break
 
+def format_msg(msg):
+    return bytes('{color}{msg}\n'.format(
+        color = cfg.get_style('info'),
+        msg = cfg.get_msg(msg)))
+
 while True:
     c, a = sock.accept()
     thread = threading.Thread(target=handler,args=(c, a))
@@ -53,8 +60,9 @@ while True:
     thread.start()
     clients.append(c)
     for cli in clients:
+        cli.family
         if not cli == c:
             cli.send(cfg.get_msg('connected'))
-        else:
+        else:  color = cfg.get_style('info'),
             cli.send(cfg.get_msg('welcome'))
-    print(cfg.get_msg('connected'))
+    print(cfg.get_msg('connected'))  color = cfg.get_style('info'),  color = cfg.get_style('info'),  color = cfg.get_style('info'),

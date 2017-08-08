@@ -1,7 +1,20 @@
 # Changelog
 
+## Future
 
-Released:
+- 0.3
+    - simple server console
+    - users count
+    - hiscore page
+
+## In development
+
+- 0.2
+    - colors testing
+    - simple menu
+    - sample about page
+    
+## Released
 
 - 0.1
     - server init
