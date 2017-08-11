@@ -10,5 +10,6 @@ class Twit:
             access_token_secret)
 
     def twit(self, message):
-        self.twitter.update_status(status=message)
+        #self.twitter.update_status(status=message)
+        message = message + ' /fake/'
         return message

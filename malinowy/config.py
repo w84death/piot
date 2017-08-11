@@ -4,21 +4,22 @@ import curses
 class Config:
     def __init__(self):
         self.settings = {
-            'version': '0.1',
+            'version': '0.2',
             'name': 'ma:/:linowy//bot',
             'prompt_size': 144,
-            'color_a': 3,
-            'color_b': 5
+            'color_a': 14,
+            'color_b': 15,
+            'background_char': '/'
         }
 
         self.messages = {
-            'title': '{a}/// {b}{title}{a} // ver. {ver} /',
-            'prompt': '{a}/// {b}wri:{a} // :te_ / {b}',
-            'footer': '{a}/// follow me {b}@MalinowyBot{a} // {quit}{a} to exit program',
-            'loading': '{a}/// wa: // :it___ /',
-            'twit': '{a}/// {b}twi:{a} // :ted / {b}{message}',
-            'done': '{a}/// {b}do:{a} // :ne_ /',
-            'error': '{a}/// {b}err:{a} // :or_ /'
+            'title': '{a} /// {b}{title}{a} // ver. {ver} / ',
+            'prompt': '{a} /// {b}wri:{a} // :te_ / {b}',
+            'footer': '{a} /// follow me {b}@MalinowyBot{a} // {quit}{a} to exit program / ',
+            'loading': '{a} /// wa: // :it___ /',
+            'twit': '{a} /// {b}twi:{a} // :ted / {b}{message} / ',
+            'done': '{a} /// {b}do:{a} // :ne_ / ',
+            'error': '{a} /// {b}err:{a} // :or_ / '
         }
 
         self.api_keys = {
