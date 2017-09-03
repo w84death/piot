@@ -63,6 +63,7 @@ while True:
         cli.family
         if not cli == c:
             cli.send(cfg.get_msg('connected'))
-        else:  color = cfg.get_style('info'),
+        else:  
+            color = cfg.get_style('info'),
             cli.send(cfg.get_msg('welcome'))
     print(cfg.get_msg('connected'))  color = cfg.get_style('info'),  color = cfg.get_style('info'),  color = cfg.get_style('info'),
